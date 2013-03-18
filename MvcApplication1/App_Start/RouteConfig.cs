@@ -125,6 +125,18 @@ namespace MvcApplication1
             Constraints.Add("httpMethod", new HttpMethodConstraint(httpVerbs));
             return this;
         }
+
+        public IRedirectMapper Permanent()
+        {
+            IsPermanent = true;
+            return this;
+        }
+
+        public IRedirectMapper NotPermanent()
+        {
+            IsPermanent = false;
+            return this;
+        }
     }
 
     public interface IRedirectMapper
@@ -134,5 +146,7 @@ namespace MvcApplication1
         IRedirectMapper To(object values);
         IRedirectMapper GetOnly();
         IRedirectMapper AllowMethods(params string[] httpVerbs);
+        IRedirectMapper Permanent();
+        IRedirectMapper NotPermanent();
     }
 }
